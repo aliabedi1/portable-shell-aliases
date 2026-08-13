@@ -1,0 +1,42 @@
+# Original ~/.zsh_aliases snapshot from 2026-08-13.
+
+# Aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias a='php artisan'
+alias s='php artisan serve'
+alias rc='php artisan route:cache'
+alias oc='php artisan optimize:clear'
+alias tinker='php artisan tinker'
+alias rlist='php artisan route:list'
+alias r='php artisan make:resource'
+alias c='php artisan make:controller'
+alias req='php artisan make:request'
+alias l='ls -CF'
+alias pingme='ping 4.2.2.4'
+alias A='php artisan'
+alias bashrc='nano ~/.bashrc'
+alias czbashrc='code ~/.zshrc'
+alias zshaliase='code ~/.zsh_aliases'
+alias zbashrc='nano ~/.zshrc'
+alias S='php artisan serve'
+alias d='php artisan debug'
+alias D='php artisan debug'
+alias cc='clear'
+alias nekoray='sudo /opt/nekoray/nekoray'
+alias infrastructure='cd ~/Desktop/dornica-projects/laravel-dev-environment/'
+alias open='xdg-open'
+alias payment='cd ~/Desktop/dornica-projects/payment-system-rebuilt/'
+alias phpswitch='sudo update-alternatives --config php'
+alias dual='composer dumpautoload'
+alias cu='composer u --no-cache'
+alias pyvpn='python3 ~/Desktop/vpn/MasterHttpRelayVPN/main.py'
+
+
+# Functions
+vp() {
+  php artisan vendor:publish --tag="dornica-$1" --force
+}
+skillin() {
+  "$@" --global --agent claude-code -y
+}
