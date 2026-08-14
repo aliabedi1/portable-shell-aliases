@@ -44,6 +44,7 @@ are the same functions there.
 | Shortcut | Command or purpose |
 | --- | --- |
 | `ll` | Detailed directory listing, including hidden files |
+| `lll` | List all entries one per line, showing names only |
 | `la` | List hidden files |
 | `l` | Compact directory listing |
 | `a`, `A` | `php artisan` |

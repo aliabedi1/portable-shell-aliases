@@ -3,6 +3,7 @@
 
 # Directory listings
 alias ll='ls -alF'
+alias lll='ls -1a'
 alias la='ls -A'
 alias l='ls -CF'
 

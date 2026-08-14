@@ -4,7 +4,7 @@
 # PowerShell resolves aliases before functions. Remove name collisions (notably
 # the built-in `r` alias) so these portable functions receive the command.
 $portableCommandNames = @(
-    'll', 'la', 'l', 'a', 's', 'rc', 'oc', 'tinker', 'rlist', 'r', 'c', 'req',
+    'll', 'lll', 'la', 'l', 'a', 's', 'rc', 'oc', 'tinker', 'rlist', 'r', 'c', 'req',
     'd', 'pingme', 'cc', 'dual', 'cu', 'infrastructure', 'payment', 'pyvpn',
     'phpswitch', 'nekoray', 'open', 'bashrc', 'zbashrc', 'czbashrc',
     'zshaliase', 'vp', 'skillin'
@@ -14,6 +14,7 @@ foreach ($portableCommandName in $portableCommandNames) {
 }
 
 function global:ll { Get-ChildItem -Force @args }
+function global:lll { Get-ChildItem -Force @args | Select-Object -ExpandProperty Name }
 function global:la { Get-ChildItem -Force @args }
 function global:l { Get-ChildItem @args }
 
