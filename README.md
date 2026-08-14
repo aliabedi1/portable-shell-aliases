@@ -59,7 +59,7 @@ are the same functions there.
 | `d`, `D` | `php artisan debug` |
 | `pingme` | Ping `4.2.2.4` |
 | `cc` | Clear the terminal |
-| `md FILE` | Render a Markdown file with `glow -pt` |
+| `md FILE` | Render a Markdown file with `glow -t` |
 | `dual` | `composer dumpautoload` |
 | `cu` | `composer u --no-cache` |
 | `infrastructure` | Open the local Laravel development-environment directory |

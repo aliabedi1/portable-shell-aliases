@@ -25,7 +25,7 @@ alias D='php artisan debug'
 # General tools
 alias pingme='ping 4.2.2.4'
 alias cc='clear'
-alias md='glow -pt'
+alias md='glow -t'
 alias dual='composer dumpautoload'
 alias cu='composer u --no-cache'
 

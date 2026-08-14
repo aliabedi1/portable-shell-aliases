@@ -31,7 +31,7 @@ function global:d { & php artisan debug @args }
 
 function global:pingme { & ping 4.2.2.4 @args }
 function global:cc { Clear-Host }
-function global:md { & glow -pt @args }
+function global:md { & glow -t @args }
 function global:dual { & composer dumpautoload @args }
 function global:cu { & composer u --no-cache @args }
 
