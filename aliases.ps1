@@ -4,8 +4,8 @@
 # PowerShell resolves aliases before functions. Remove name collisions (notably
 # the built-in `r` alias) so these portable functions receive the command.
 $portableCommandNames = @(
-    'll', 'la', 'l', 'a', 's', 'rc', 'oc', 'tinker', 'rlist', 'r', 'c', 'req',
-    'd', 'pingme', 'cc', 'dual', 'cu', 'infrastructure', 'payment', 'pyvpn',
+    'll', 'lll', 'la', 'l', 'a', 's', 'rc', 'oc', 'tinker', 'rlist', 'r', 'c', 'req',
+    'd', 'pingme', 'cc', 'md', 'dual', 'cu', 'infrastructure', 'payment', 'pyvpn',
     'phpswitch', 'nekoray', 'open', 'bashrc', 'zbashrc', 'czbashrc',
     'zshaliase', 'vp', 'skillin'
 )
@@ -14,6 +14,7 @@ foreach ($portableCommandName in $portableCommandNames) {
 }
 
 function global:ll { Get-ChildItem -Force @args }
+function global:lll { Get-ChildItem -Force @args | Select-Object -ExpandProperty Name }
 function global:la { Get-ChildItem -Force @args }
 function global:l { Get-ChildItem @args }
 
@@ -30,6 +31,7 @@ function global:d { & php artisan debug @args }
 
 function global:pingme { & ping 4.2.2.4 @args }
 function global:cc { Clear-Host }
+function global:md { & glow -t @args }
 function global:dual { & composer dumpautoload @args }
 function global:cu { & composer u --no-cache @args }
 

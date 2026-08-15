@@ -44,6 +44,7 @@ are the same functions there.
 | Shortcut | Command or purpose |
 | --- | --- |
 | `ll` | Detailed directory listing, including hidden files |
+| `lll` | List all entries one per line, showing names only |
 | `la` | List hidden files |
 | `l` | Compact directory listing |
 | `a`, `A` | `php artisan` |
@@ -58,6 +59,7 @@ are the same functions there.
 | `d`, `D` | `php artisan debug` |
 | `pingme` | Ping `4.2.2.4` |
 | `cc` | Clear the terminal |
+| `md FILE` | Render a Markdown file with `glow -t` |
 | `dual` | `composer dumpautoload` |
 | `cu` | `composer u --no-cache` |
 | `infrastructure` | Open the local Laravel development-environment directory |

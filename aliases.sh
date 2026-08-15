@@ -3,6 +3,7 @@
 
 # Directory listings
 alias ll='ls -alF'
+alias lll='ls -1a'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -24,6 +25,7 @@ alias D='php artisan debug'
 # General tools
 alias pingme='ping 4.2.2.4'
 alias cc='clear'
+alias md='glow -t'
 alias dual='composer dumpautoload'
 alias cu='composer u --no-cache'
 
