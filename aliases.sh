@@ -42,6 +42,9 @@ alias zbashrc='${EDITOR:-nano} ~/.zshrc'
 alias czbashrc='code ~/.zshrc'
 alias zshaliase='code ~/.portable-shell-aliases/aliases.local.sh'
 
+# Remove existing aliases before parsing function definitions (especially in Zsh).
+unalias open vp skillin portable_aliases_update aliases-update 2>/dev/null || :
+
 # Open a file or URL with the operating system's default application.
 open() {
   case "$(uname -s 2>/dev/null)" in
@@ -58,6 +61,18 @@ vp() {
 skillin() {
   "$@" --global --agent claude-code -y
 }
+
+# Update only the shared aliases, then reload them in this shell.
+portable_aliases_update() {
+  if [ "$#" -ne 0 ]; then
+    printf '%s\n' 'Usage: aliases-update' >&2
+    return 2
+  fi
+  sh "${PORTABLE_ALIASES_DIR:-$HOME/.portable-shell-aliases}/update.sh" &&
+    . "${PORTABLE_ALIASES_DIR:-$HOME/.portable-shell-aliases}/aliases.sh"
+}
+
+alias aliases-update='portable_aliases_update'
 
 # Put private or machine-only additions here. The installer never overwrites it.
 if [ -f "$HOME/.portable-shell-aliases/aliases.local.sh" ]; then

@@ -18,8 +18,16 @@ curl -fsSL https://raw.githubusercontent.com/aliabedi1/portable-shell-aliases/ma
 irm https://raw.githubusercontent.com/aliabedi1/portable-shell-aliases/main/install.ps1 | iex
 ```
 
-Open a new terminal tab after installation. Re-run the same command whenever
-you want to update to the latest aliases.
+Open a new terminal tab after installation. To update and reload an existing
+installation in Bash, Zsh, Git Bash, or PowerShell, run:
+
+```sh
+aliases-update
+```
+
+This downloads the latest shared aliases without changing profiles or private
+aliases. For installations made before this command existed, run the install
+command once more and open a new terminal to enable it.
 
 > Prefer to inspect scripts before running them? Open
 > [`install.sh`](./install.sh) or [`install.ps1`](./install.ps1) first.
@@ -70,6 +78,7 @@ are the same functions there.
 | `bashrc` | Edit `~/.bashrc` |
 | `zbashrc`, `czbashrc` | Edit `~/.zshrc` |
 | `zshaliase` | Edit this install's private, machine-specific alias file |
+| `aliases-update` | Download and reload the latest shared aliases |
 | `open` | Open a file or URL in the operating system's default application |
 | `vp NAME` | Publish the `dornica-NAME` Laravel vendor tag with `--force` |
 | `skillin COMMAND` | Run a command with `--global --agent claude-code -y` appended |
@@ -135,7 +144,7 @@ on every machine:
 3. Check and publish the change:
 
    ```sh
-   sh -n aliases.sh install.sh
+   sh -n aliases.sh install.sh update.sh
    git diff
    git add aliases.sh aliases.ps1 README.md
    git commit -m "Describe the alias change"
@@ -143,9 +152,8 @@ on every machine:
    ```
 
 4. After the change reaches the `main` branch, update each installed machine by
-   re-running its install command from the [Install](#install) section. The
-   installer downloads the newest shared file and preserves the local alias
-   file.
+   running `aliases-update`. It downloads the newest shared file, reloads it
+   in the current shell, and preserves the local alias file.
 
 5. Open a new terminal, or reload immediately:
 

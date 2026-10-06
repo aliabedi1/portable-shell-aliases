@@ -7,7 +7,7 @@ $portableCommandNames = @(
     'll', 'lll', 'la', 'l', 'a', 's', 'rc', 'oc', 'tinker', 'rlist', 'r', 'c', 'req',
     'd', 'pingme', 'cc', 'md', 'dual', 'cu', 'infrastructure', 'payment', 'pyvpn',
     'phpswitch', 'nekoray', 'open', 'bashrc', 'zbashrc', 'czbashrc',
-    'zshaliase', 'vp', 'skillin'
+    'zshaliase', 'vp', 'skillin', 'aliases-update'
 )
 foreach ($portableCommandName in $portableCommandNames) {
     Remove-Item -Path "Alias:$portableCommandName" -Force -ErrorAction SilentlyContinue
@@ -101,6 +101,31 @@ function global:skillin {
     $commandName = $args[0]
     $commandArgs = if ($args.Count -gt 1) { $args[1..($args.Count - 1)] } else { @() }
     & $commandName @commandArgs --global --agent claude-code -y
+}
+
+function global:aliases-update {
+    if ($args.Count -ne 0) {
+        throw 'Usage: aliases-update'
+    }
+    $repoUrl = if ($env:PORTABLE_ALIASES_URL) {
+        $env:PORTABLE_ALIASES_URL.TrimEnd('/')
+    } else {
+        'https://raw.githubusercontent.com/aliabedi1/portable-shell-aliases/main'
+    }
+    $aliasesFile = Join-Path $HOME '.portable-shell-aliases/aliases.ps1'
+    $temporaryFile = "$aliasesFile.$([guid]::NewGuid()).tmp"
+    try {
+        Invoke-WebRequest -UseBasicParsing -Uri "$repoUrl/aliases.ps1" -OutFile $temporaryFile -ErrorAction Stop
+        $parseErrors = $null
+        $tokens = $null
+        $null = [System.Management.Automation.Language.Parser]::ParseFile($temporaryFile, [ref] $tokens, [ref] $parseErrors)
+        if ($parseErrors.Count -gt 0) { throw 'Downloaded aliases contain syntax errors.' }
+        Move-Item -Path $temporaryFile -Destination $aliasesFile -Force -ErrorAction Stop
+    } finally {
+        Remove-Item -Path $temporaryFile -Force -ErrorAction SilentlyContinue
+    }
+    . $aliasesFile
+    Write-Host 'Portable aliases updated and reloaded.'
 }
 
 $portableLocalAliases = Join-Path $HOME '.portable-shell-aliases/aliases.local.ps1'

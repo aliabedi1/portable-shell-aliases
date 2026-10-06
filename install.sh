@@ -50,9 +50,13 @@ configure_profile() {
 
 mkdir -p "$INSTALL_DIR"
 alias_temp="$INSTALL_DIR/aliases.sh.tmp.$$"
-trap 'rm -f "$alias_temp"' EXIT HUP INT TERM
+update_temp="$INSTALL_DIR/update.sh.tmp.$$"
+trap 'rm -f "$alias_temp" "$update_temp"' EXIT HUP INT TERM
 download "$REPO_RAW_URL/aliases.sh" "$alias_temp"
+download "$REPO_RAW_URL/update.sh" "$update_temp"
+sh -n "$alias_temp" "$update_temp"
 mv "$alias_temp" "$INSTALL_DIR/aliases.sh"
+mv "$update_temp" "$INSTALL_DIR/update.sh"
 
 if [ ! -f "$INSTALL_DIR/aliases.local.sh" ]; then
   printf '%s\n' '# Add private or machine-specific Bash/Zsh aliases here.' > "$INSTALL_DIR/aliases.local.sh"
